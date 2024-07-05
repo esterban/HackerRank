@@ -1,39 +1,11 @@
 package leetcode.maximum_subarray;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-//import static leetcode.maximum_subarray.MaxSubArrayUtil.*;
-
-public class MaximumSubArray {
-    public int maxSubArray(int[] nums) {
-        List<Integer> numsList = Arrays.stream(nums).boxed().collect(Collectors.toList());
-
-        Map.Entry<List<Integer>, List<Integer>> level0Split = splitList(numsList);
-
-        List<Integer> leftSplitL0 = level0Split.getKey();
-        List<Integer> rightSplitL0 = level0Split.getValue();
-
-        System.out.println("Level0 split left subList= " + leftSplitL0 + " -> right = " + rightSplitL0);
-
-        int leftSplitL0Sum = sumList(leftSplitL0);
-        int rightSplitL0Sum = sumList(rightSplitL0);
-
-        System.out.println("Level0 split left sum = " + leftSplitL0Sum + " -> right sum = " + rightSplitL0Sum);
-
-        List<Integer> sumListL1 = generateSumList(numsList);
-        List<Integer> sumListL2 = generateSumList(sumListL1);
-
-        System.out.println("Level 1 -> sumList = " + sumListL1);
-        System.out.println("Level 2 -> sumList = " + sumListL2);
-
-        List<Integer> sumListReducedA = generateSumList(sumListL1);
-        List<Integer> sumListReducedB = generateSumList(sumListL1.subList(1, sumListL1.size()));
-
-        System.out.println("sumListReducedA = " + sumListReducedA + " -> sumListReducedB = " + sumListReducedB);
-
-        return 0;
-    }
+public class MaxSubArrayUtil {
 
     public static Map.Entry<List<Integer>, List<Integer>> splitList(List<Integer> numsList) {
         int centreIndex = numsList.size() / 2;
